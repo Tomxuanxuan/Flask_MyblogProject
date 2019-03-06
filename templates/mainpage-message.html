@@ -1,0 +1,86 @@
+{% extends 'mainpage.html' %}
+
+<style>
+ .form-control {
+  box-shadow: none !important;
+  border: 2px solid #444;
+  background: transparent;
+  font-family: "Montserrat", arial, sans-serif;
+}
+ .form-control:hover, .form-control:focus, .form-control:active {
+  outline: none;
+  box-shadow: none !important;
+  border: 2px solid #EF5353;
+}
+</style>
+
+{% block mainpagecontent %}
+    <div class="message-body">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="message-item">
+            <div class="message-messager">
+                <div>
+                    <img class="messager-photo" src="/static/upload/{{ message.photo }}" style="border-radius: 50%;">
+                </div>
+                <p><a href="">{{ message.username }}</a></p>
+            </div>
+            <div class="message-content">
+                <p>
+                    {{ message.message_content }}
+                </p>
+            </div>
+            <div class="message-bar">
+                <span class="message-datetime">{{ message.message_time }}</span><span class="message-replay" onclick="mess_reply({{ message.id }})" id="messreply{{ message.id }}">回复</span>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+        空空如也
+    {% endif %}
+
+
+
+    <script>
+
+        $("#mainpagenav li a").css('background','#C9BA9C');
+        $("#mainpage-message").css('background','bisque');
+
+
+        function mess_reply(id){
+
+            console.log($("#messreply"+id).text());
+
+            if($("#messreply"+id).text()=='回复'){
+                $("#messreply"+id).text("收起回复");
+                $("#messreply"+id).css("background","#D6C9C1");
+                $("#messreply"+id).css("border-top","1px solid #C9BA9C");
+                $("#messreply"+id).css("border-left","1px solid #C9BA9C");
+                $div = $("<div style='width:100%;height:80px;line-height:80px;position:relative;border:1px solid #C9BA9C;background:#D6C9C1'>" +
+                    "<form action='' method='post'><span style='vertical-align:top;margin-left:10px;'>回复：</span>" +
+                    "<textarea name='message-replay' id='messtextarea"+id+"' cols='63' rows='2' style='position:absolute;top:15px;left:150px;border-radius:3px;padding:5px;background:#f1f1f1'></textarea>" +
+                    "<input type='button' value='发送' onclick='sendmess("+id+")' style='position:absolute;right:20px;bottom:25px;width:50px;border-radius:3px;background:bisque'>"+
+                    "</form></div>");
+                $("#messreply"+id).parent().parent().after($div);
+            }else{
+                $("#messreply"+id).text("回复");
+                $("#messreply"+id).css("background","#d6cfbf");
+                $("#messreply"+id).css("border","0");
+                $("#messreply"+id).parent().parent().next().remove();
+            }
+        }
+
+        function sendmess(id) {
+            //针对留言的回复
+            var messdata = $("#messtextarea"+id).val();
+            var dict_messdata = {
+                "id":id,
+                "messdata":messdata
+            }
+            $.post('/mainpage-message/'+{{ session['user_id'] }},dict_messdata, function (data) {
+                alert(data)
+            })
+        }
+    </script>
+{% endblock %}

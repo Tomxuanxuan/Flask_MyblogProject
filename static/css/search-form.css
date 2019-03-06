@@ -1,0 +1,83 @@
+html,body {height: 100%;}
+body {padding: 0px; margin:0px; background:url(../img/image.jpg) ;
+    background-position: center; background-size: cover; background-attachment: fixed;
+    background-repeat: no-repeat;}
+
+.search-wrapper {
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    height:300px;
+    width: 600px;
+}
+.search-wrapper_after_top{
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top:5%;
+    left:15%;
+    height:300px;
+    width: 600px;
+
+}
+#page-view{
+    position: absolute;
+    bottom:0px;
+    left:100px;
+    height:100px;
+    width: 200px;
+
+}
+
+
+#keyword{
+    width: 400px;
+    height: 40px;
+    position: absolute;
+    top:150px;
+    left:100px;
+    font-size: 16px;
+}
+
+.search-icon{
+    padding: 0;
+    position: absolute;
+    top: 150px;
+    left:500px;
+}
+
+.xy-icon{
+    height: 46px;
+    width: 80px;
+    position: absolute;
+    top:150px;
+    left:544px
+}
+
+#neural{
+    height: 40px;
+    width: 40px;
+    background: url("../img/xy_neural.jpg ");
+    position: absolute;
+    top:155px;
+    left:460px;
+}
+#img_kw{
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+     position:absolute;
+    right:0;
+    top:0;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    cursor:pointer
+}
+a{
+    text-decoration: none;
+    color:#000000;
+}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/myinfos.css">
+    <link href="/static/css/indexold.css" rel="stylesheet">
+    <link href="/static/css/baseold.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/sinaFaceAndEffec.css">
+    <link href="/static/css/m.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}" ></script>
+    <script src="{{ url_for('static',filename='js/hc-sticky.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/comm.js') }}"></script>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+    <!--<script src="js/modernizr.js"></script>-->
+    <!--<![endif]&ndash;&gt;-->
+</head>
+{% block style %}
+{% endblock %}
+
+<body>
+<header id="baseheader">
+{#    <img src="/static/images/105247_top.jpg" alt="">#}
+    <!--<img src="images/logo.png" alt="心情语录随笔" width="170" height="60">-->
+    <!--<h1><a href="#">心情日记_心情语录随笔-个人博客模板</a></h1>-->
+    <!--<p>看了太多的励志故事,突然发现梦想还是与自己都无关。</p>-->
+</header>
+<nav id="nav">
+    <ul>
+        <li><a href="/">网站首页</a></li>
+        <li><a href="/?art_type=1" title="内涵段子">内涵段子</a></li>
+        <li><a href="?art_type=2" title="劲爆游戏">劲爆游戏</a></li>
+        <li><a href="/?art_type=3" title="热门小说">热门小说</a></li>
+        <li><a href="/video" title="搞笑视频">搞笑视频</a></li>
+        {% if session['user_id'] %}
+            <li><a href="/edit" title="发布文章">发布文章</a></li>
+            <li><a href="/myinfos" title="个人中心">个人中心</a></li>
+            <li id="base_user"><span>您好：{{ session['username'] }} | </span> <a href="/logout">退出</a></li>
+        {% else %}
+            <li id="release2login"><a title="发布文章">发布文章</a></li>
+            <li id="myinfos2login"><a title="个人中心">个人中心</a></li>
+            <li><a href="/login" title="个人中心">登录</a></li>
+            <li><a href="/register" title="个人中心">注册</a></li>
+            <script>
+            $("#release2login").click(function () {alert("您尚未登录，请先登录！")});
+            $("#myinfos2login").click(function () {alert("您尚未登录，请先登录！")});
+        </script>
+        {% endif %}
+        <li><a href="/lbxy_search" title="搜索" target="_blank">搜索</a></li>
+    </ul>
+</nav>
+
+{% block allmain %}
+{% endblock %}
+
+<div class="article">
+    {% block main %}
+  {% endblock %}
+
+{% block aside %}
+    <!--右侧显示栏-->
+    <aside>
+        <div class="hotcomm">
+            <h2>精彩文章推荐</h2>
+            <ul>
+                {% for hotarticle in params.hotcomm  %}
+                <li><a title="{{ hotarticle.title }}" href="/article/{{ hotarticle.article_id }}">{{ hotarticle.title }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        <div class="newbolg">
+            <h2>最新发布</h2>
+            <ul class="rank">
+                {% for timecom in params.timecomm %}
+                <li><a title="{{ timecom.title }}" href="/article/{{ timecom.article_id }}">{{ timecom.title }}</a></li>
+                {% endfor %}
+            </ul>
+            <h2>点击排行</h2>
+            <ul class="rank">
+                {% for readcom in params.readcomm %}
+                <li><a title="{{ readcom.title }}" href="/article/{{ readcom.article_id }}">{{ readcom.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+{% endblock %}
+
+</div>
+<footer>
+
+    <div id="copright">
+        <span>本站基于dedecms程序搭建，用于个人博客模板测试，内容均来源于网络搜集。</span>
+    </div>
+</footer>
+
+{% block formbk %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  作者个人中心
+{% endblock %}
+
+{% block style %}
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+
+{% endblock %}
+
+{% block allmain %}
+    <div class="mainContent">
+    <aside>
+      <div class="avatar">
+          <img src="/static/upload/{{ params.auther.photo }}" alt="">
+          <a href="#"><span>{{ params.auther.username }}</span></a>
+
+      </div>
+        <div class="btn-attention">
+            <input class="btn-concern" type="button"  id="attenAuter" >
+{#            <button id="attenAuter"  class="btn-concern">关注</button>#}
+        </div>
+
+      <section class="topspaceinfo">
+
+        <h1>作者签名</h1>
+        <p>{{ params.auther.about_me }}....</p>
+      </section>
+      <div class="userinfo">
+          <p class="q-fans"> 作者：<a href="/" target="_blank" id="author-fans">{{ params.auther.username }}</a></p>
+        <p class="q-fans"> 粉丝：<a href="/" target="_blank" id="author-fans">{{ params.fans }}</a></p>
+           <p class="q-fans"> 注册时间：<a  target="_blank" id="author-fans">{{ params.auther.registration_time }}</a></p>
+        <p class="btns"><a id="message_liuyan" target="_blank" >留言</a><a href="/imageshow/{{ params.auther.user_id }}" target="_blank">相册</a><a href="/" target="_blank">视频</a></p>
+          <div id="message_input"></div>
+      </div>
+      <section class="newpic">
+         <h2>最新照片</h2>
+         <ul>
+             {% for authorimg in params.images %}
+           <li><a href="/imageshow/{{ authorimg.uploader }}"><img src="/static/imgupload/{{ authorimg.imagename }}"></a></li>
+             {% endfor %}
+
+         </ul>
+      </section>
+      <section class="taglist">
+         <h2>留言信息</h2>
+          <div id="message_show">
+
+          </div>
+      </section>
+    </aside>
+
+    <div class="blogitem">
+    <div class="bloglist">
+        <ul>
+        {% for article in params.art_ids %}
+            <li> <i class="blogpic"><a href="#"><img src="/static/upload/{{ article.article_img }}" alt=""> </a></i>
+              <dl>
+                <dt><a href="/article/{{ article.article_id }}" target="_blank">{{ article.title }}</a></dt>
+                <dd><span class="bloginfo">{{ article.brief }}</span>
+                  <p class="timeinfo"><span class="lanmu"><a href="#" target="_blank">{{ article.publish_article.username }}</a></span><span class="date">{{ article.publish_time }}</span></p>
+                  <a class="read" href="/article/{{ article.article_id }}">阅读更多</a> </dd>
+              </dl>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+      <div class="pages"><span>1</span><a href="/" hidefocus="">2</a><a href="/" hidefocus="">3</a><a href="/" class="next">下一页&gt;&gt;</a>
+      </div>
+    </div>
+    </div>
+
+    <script>
+    $(function () {
+        //每次一打开,判断用户是否已关注,决定按钮显示的内容
+        var res_atten = 'False';
+        $.get("/attenuser?auther_id="+{{ params.auther.user_id }}, function (resText) {
+            if(resText=="True"){
+                //用户已关注,按钮显示"已关注"
+                res_atten = 'True';
+                $("#attenAuter").val('已关注');
+            }
+            else{
+                //用户未关注, 或者未登录,按钮显示"关注"
+                res_atten = 'False';
+                $("#attenAuter").val('关注');
+            }
+        }, "text");
+
+        $("#attenAuter").click(function () {
+            var url = "/attenuser?atten_autherId="+{{ params.auther.user_id }} + "&res_atten="+res_atten;
+            $.post(url, function (data) {
+                if(data == "取关成功"){
+                    $("#attenAuter").val('关注');
+                    res_atten = 'False';
+                }
+                else{
+                    $("#attenAuter").val('已关注');
+                    res_atten = 'True';
+                }
+            });
+        });
+
+        
+        //加载用户留言信息
+        message_show();
+
+        //单击回复添加留言
+        var clickflag_right = 0;
+        $("#message_liuyan").click(function () {
+            var user_id = {{ params.user_id }};
+            if(user_id == 'None'){
+                alert('请先登录')
+            }
+            else {
+                if (clickflag_right == 0) {
+                    $("#message_input").append('<div><input type="text" id="message_kuang" value="回复框"><button onclick="messageinput('+user_id+')">留言</button></div>');
+                    clickflag_right = 1;
+                } else {
+                    $("#message_input").empty();
+                    clickflag_right = 0;
+                }
+            }
+        })
+
+    });
+
+    function message_show() {
+        $.get('/message?auther_id='+{{ params.auther.user_id }}, function (jsonStrmessage) {
+            $.each(jsonStrmessage, function (i, content) {
+                $("#message_show").append(message(content))
+            })
+        },'json')
+    }
+    var mess;
+    function message(content) {
+        mess = '<ul><li>';
+        mess += '<a href="/autherinfos/'+content.messager_id+'">'+content.messager + '</a> ' + content.message_time + ':<br>';
+        mess += content.message_content;
+        mess += '</li></ul>'
+        return mess
+    }
+
+
+    function messageinput(user_id) {
+        var mescontent = $("#message_kuang").val();
+        if (mescontent == " "){
+            alert('请不要输入空消息')
+        }
+        else {
+            var data = {
+                "user_id": user_id, //留言者
+                "messagecontent": mescontent
+            };
+            $.post('/autherinfos/{{ params.auther.user_id }}', data, function (repdata) {
+                alert(repdata);
+            })
+        }
+    }
+    </script>
+
+    <script>
+
+
+    </script>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+

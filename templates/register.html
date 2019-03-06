@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<link href="/static/css/login_reglogin.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% if errMsg == "usernameErr" %}
+        <script>
+            msg = '该用户名已经存在，请重新输入';
+          alert(msg);
+        </script>
+        {% elif errMsg == 'emailErr' %}
+        <script>
+            msg = '该邮箱已注册,请重新输入';
+          alert(msg);
+        </script>
+        {% elif errMsg == 'emailCheckErr' %}
+        <script>
+            msg = '验证码输入不正确';
+          alert(msg);
+        </script>
+  	{% endif %}
+		<div class="bg">
+				<img src="/static/images/c.jpg" alt="">
+			</div>
+	<div class="main">
+		<div class="header" >
+			<h1>创建一个新账户！</h1>
+		</div>
+		<p></p>
+			<form action="#" method="post">
+				<ul class="left-form">
+					<h2>新账户:</h2>
+                    <div id="show" style="text-align: right; font-size: 12px; color: red;"></div>
+					<li>
+            <input type="text" name="username" id="username" placeholder="请输入用户名" onblur="checkusername()" required/>
+
+						<div class="clear"> </div>
+					</li>
+
+
+					<li>
+            <input type="password" name="password1" id="password1" placeholder="请输入密码" required/>
+						<div class="clear"> </div>
+          </li>
+                    <div id="pwd" style="text-align: right; font-size: 12px; color: red;"></div>
+          <li>
+              <input type="password"  onblur="checkpwd()" name="password2" id="password2" placeholder="请再次确认密码" required/>
+              <div class="clear"> </div>
+            </li>
+
+                    <li>
+            <input type="email" id="email" name="email" placeholder="请输入邮箱" required/>
+            <input type="button" value="获取验证码" onclick="checkemail()">
+						<div class="clear"> </div>
+					</li>
+					<li>
+            <input type="text" name="mibao" placeholder="请输入密保信息" required/>
+						<div class="clear"> </div>
+					</li>
+
+					<!--用于记录注册跳转来源，方便注册之后跳转之前的页面-->
+          <input type="hidden" name="source_url" value="">
+					<input type="submit" value="创建并登录">
+					<div class="clear"> </div>
+				</ul>
+				<div class="clear"> </div>
+			</form>
+	</div>
+</body>
+<script>
+    function checkemail() {
+        var xhr = xhrcreate();
+        url = '/register/checkemail?email='+document.getElementById('email').value;
+        xhr.open('get', url, true);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                console.log(xhr.responseText);
+            }
+        }
+        xhr.send(null);
+
+    }
+</script>
+<script>
+    function xhrcreate() {
+        if(window.XMLHttpRequest){
+            var res_xhr = new XMLHttpRequest();
+            return res_xhr
+        }
+        else {
+            var res_Active = new ActiveXObject('Microsoft.XMLHTTP');
+            return res_Active
+        }
+    }
+    function checkusername() {
+        var xhr = xhrcreate();
+        url = '/register/check?uname='+document.getElementById('username').value;
+        xhr.open('get', url, true);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                document.getElementById('show').innerHTML = xhr.responseText;
+            }
+        }
+        xhr.send(null);
+    }
+
+    function checkpwd() {
+        pwd1 = document.getElementById('password1').value;
+        pwd2 = document.getElementById('password2').value;
+        if(pwd1 == pwd2){
+            document.getElementById('pwd').innerHTML = '';
+        }
+        else {
+            document.getElementById('pwd').innerHTML = '两次密码输入不一致,请重新输入';
+
+        }
+    }
+</script>
+
+
+</html>

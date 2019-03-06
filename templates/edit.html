@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>文章编辑-个人博客平台</title>
+    <meta name="keywords" content="个人博客" />
+    <meta name="description" content="个人博客，提供最新娱乐信息" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/m.css') }}" rel="stylesheet">
+    <!--文章编辑区-->
+    <link href="{{ url_for('static',filename='css/editpage.css')}}" rel='stylesheet'>
+
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}" ></script>
+    <script src="{{ url_for('static',filename='js/hc-sticky.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/comm.js') }}"></script>
+<script src="jquery-1.11.3.js">
+    //上传文章
+    function post_page() {
+        var data={
+            'title':$('#title').val(),
+            'content' : $('#content').val(),
+            'brief' : $('#brief').val(),
+            'article_img' : $('#1').val()
+        }
+        $.ajax({
+            type: 'POST',
+            url:'{{ url_for('edit') }}',
+            dataType:'json',
+            success:function (data) {
+                alter(data['status'])
+            },
+            error:function () {
+                alter('一场')
+            }
+            }
+        )
+    }
+</script>
+
+<!--[if lt IE 9]>
+<script src="{{ url_for('static',filename ='js/modernizr.js') }}"></script>
+<![endif]-->
+</head>
+<body>
+<header id="header">
+  <div class="navbar">
+    <div class="topbox">
+      <p class="welcome">个人中心！</p>
+      <div class="searchbox">
+        <div id="search_bar" class="search_bar">
+          <form  id="searchform" action="[!--news.url--]e/search/index.php" method="post" name="searchform">
+            <input class="input" placeholder="想搜点什么呢.." type="text" name="keyboard" id="keyboard">
+            <input type="hidden" name="show" value="title" />
+            <input type="hidden" name="tempid" value="1" />
+            <input type="hidden" name="tbname" value="news">
+            <input type="hidden" name="Submit" value="搜索" />
+            <p class="search_ico"> <span></span></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-navigation">
+    <nav>
+      <div class="logo"><a href="http://www.yangqq.com">个人博客</a></div>
+      <h2 id="mnavh"><span class="navicon"></span></h2>
+      <ul id="starlist">
+        <li><a href="index.html">网站首页</a></li>
+        <li><a href="about.html">个人中心</a></li>
+        <li><a href="share.html">模板分享</a></li>
+        <li><a href="list.html">博客日记</a></li>
+        <li class="menu"><a href="fengmian.html">学无止境</a>
+          <ul class="sub">
+            <li><a href="#">慢生活</a></li>
+            <li><a href="#">美文欣赏</a></li>
+          </ul>
+        </li>
+        <li><a href="info.html">慢生活</a></li>
+        <li><a href="time.html">时间轴</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="wrapper">
+
+    <div class="ydc-pane" style="display:block;">
+        <div class="ydc-release-form-group">
+            <div class="ydc-warning-default">
+                <p>标题字数需在11字到30字之间。</p>
+            </div>
+            <div class="ydc-release-form-group-input">
+                <input type="text" id='title' class="ydc-form-control" title="" placeholder="请输入标题，为了更好的展示效果，建议标题字数在30个汉字以内" onkeyUp="textLimitCheck(this, 30);">
+                <div class="ydc-form-group-jl">
+                    <span id="messageCount">0</span>
+                    /30
+                </div>
+            </div>
+        </div>
+        <div class="ydc-release-form-text">
+            <textarea id="content" style="">请输入内容
+            </textarea>
+        </div>
+        <label class="aui-card-form-label">简介：</label>
+        <div class="ydc-release-form-text">
+            <textarea id="brief" style="">请输入推荐语
+            </textarea>
+        </div>
+        <div class="ydc-form-city">
+            <form action="">
+                <div class="aui-card-form-item">
+                    <label class="aui-card-form-label">分类:</label>
+                    <div class="aui-card-form-input">
+                        <select id="province">
+                            <option>互联网</option>
+                            <option>人工智能</option>
+                            <option>人文</option>
+                            <option>教育</option>
+                            <option>汽车</option>
+                            <option>游戏</option>
+                            <option>财经</option>
+                            <option>要闻</option>
+
+                        </select>
+                        <select class="city">
+                            <option>请选择二级分类</option>
+                        </select>
+                        <select class="city" style="display:none">
+                            <option>互联网金融</option>
+                            <option>干货</option>
+                            <option>电子商务</option>
+                            <option>互联网+</option>
+                            <option>物联网</option>
+                        </select>
+                        <select class="city" style="display:none">
+                            <option>人机交互</option>
+                            <option>AR</option>
+                            <option>虚拟现实</option>
+                        </select>
+                        <select class="city" style="display:none">
+                            <option>收藏</option>
+                            <option>国学</option>
+                            <option>哲学</option>
+                            <option>民俗</option>
+                            <option>风水</option>
+                            <option>文学</option>
+                        </select>
+                        <select class="city" style="display:none">
+                            <option>新车</option>
+                            <option>用车</option>
+                            <option>汽车保养</option>
+                            <option>二手车</option>
+                            <option>新车评测</option>
+                            <option>试驾</option>
+                        </select>
+                        <select class="city" style="display:none">
+                            <option>电子竞技</option>
+                            <option>手游</option>
+                            <option>页游</option>
+                            <option>电视游戏</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="aui-card-form-item preview  aui-news">
+                    <label class="aui-card-form-label">封面:</label>
+                    <div class="aui-file-up-img" id="preview_0">
+                        <img class="" id="imghead_0" border="0" src="{{ url_for('static',filename='images/noimg.gif') }}">
+                    </div>
+                    <div class="aui-file-up-btn clearfix">
+                        <div class="idPicFile aui-btn aui-file-new">
+                            <input type="file" name="file" id="1" class="file_photo aui-file-new-up" style="margin:0;">
+                            <a>上传图片</a>
+                        </div>
+                        <div class="aui-remarks">
+                            <p>图片尺寸建议：800*400 图片大小不超过1MB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ydc-btn">
+                    <button class="btn" onclick="post_page()">发布</button>
+                    <button class="btn btn-default">保存草稿</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  <aside class="sidebar">
+    <div class="about">
+      <h2 class="hometitle">关于本站</h2>
+      <ul>
+        <div class="avatar"> <img src="{{ url_for('static',filename='images/tx.png') }}" alt=""> </div>
+        <p class="abname">个人中心</p>
+        <p class="abtext"> 一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。 </p>
+        <li><a class="xlwb" href="#" target="_blank"></a></li>
+        <li><a class="txqq" href="" target="_blank"></a></li>
+        <li><a class="rss" href="" target="_blank"></a></li>
+        <li class="wxpic"><a class="wx" href=""></a></li>
+      </ul>
+    </div>
+    <div class="tjlm">
+      <h2 class="hometitle">推荐栏目</h2>
+      <ul>
+        <li><a href="about.html">个人中心</a></li>
+        <li><a href="share.html">模板分享</a></li>
+        <li><a href="list.html">博客日记</a></li>
+        <li><a href="info.html">慢生活</a></li>
+        <li><a href="time.html">时间轴</a></li>
+        <li><a href="#">美文欣赏</a></li>
+      </ul>
+    </div>
+    <div class="tpjx">
+      <h2 class="hometitle">图片精选</h2>
+      <ul>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/1.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/2.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/3.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/4.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/5.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/6.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+      </ul>
+    </div>
+  </aside>
+  <!--sidebar end-->
+</div>
+<!--wrapper end-->
+<footer>
+  <div class="footer">
+    <div class="wxbox">
+      <ul>
+        <li><span>我的微信</span></li>
+        <li><span>微信公众号</span></li>
+      </ul>
+    </div>
+    <div class="bzjj">
+      <h2>本站简介</h2>
+      <p>个人博客页面</p>
+    </div>
+    <div class="other">
+      <h2>个人中心</h2>
+      <p>个人中心</p>
+      <p>&nbsp;</p>
+      <p></p>
+    </div>
+  </div>
+</footer>
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>
+
+
+
+

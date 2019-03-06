@@ -1,0 +1,98 @@
+{% extends 'mainpage.html' %}
+
+{% block mainpagecontent %}
+  <div id="video-toolbar">
+      <div style="float: left; margin-left: 10px;">
+          <p style="margin-bottom: 10px;">
+          搜索：<input type="text">
+          </p>
+          <p>
+              共{{ params.totalCount }}条
+              <span><a href="/mainpage-video/{{ params.user_id }}?page=1">首页</a></span>
+              <span><a href="/mainpage-video/{{ params.user_id }}?page={{ params.prePage }}"><b>&lt;&lt;</b></a></span>
+              <span><b>{{ params.page }}</b></span>
+              <span><a href="/mainpage-video/{{ params.user_id }}?page={{ params.nextPage }}"><b>&gt;&gt;</b></a></span>
+              <span><a href="/mainpage-video/{{ params.user_id }}?page={{ params.lastpage }}">尾页</a></span>
+          </p>
+      </div>  
+      <div id="btn-video-up">
+          <img src="/static/images/up.jpg" alt=""><span>上传视频</span>
+      </div>
+  </div>
+  <div id="video-up-div">
+    <h3>上传视频</h3>
+    <hr>
+    <p>
+    <form action="/mainpage-video/{{ session['user_id'] }}" method="post" enctype="multipart/form-data">
+      <p>
+        标题： <input type="text" name="vtitle" style="width: 300px;height: 25px;padding-left:5px;border-radius: 3px;">
+      </p>
+      <p>
+        <span style="vertical-align: top;">简介：</span> <textarea name="vcontent" id="" cols="45" rows="8" style="padding:5px;border-radius: 3px;"></textarea>
+      </p>
+      <p>
+        <input type="file" name="video" id="video-input" style="width:250px;border:1px solid #fff;border-radius: 1px;background:#fff;">
+      </p>
+      <p id="p-btn">
+          <span id="btn-video-cencel">取消</span><input type="submit" value="上传" style="width:50px;border-radius: 4px;background:lightblue;">
+      </p>
+    </form>
+    </p>
+  </div>
+  <div id="video-body">
+  {% for video in params.videos %}
+    <div class="video-item">
+      <div class="video-content">
+        <video src="/static/upload/{{ video.savename }}" controls="controls"></video>
+      </div>
+      <div style="margin:0 15px;">
+          <p class="myvideo-title">
+              <b>
+                标题：{{ video.vtitle }}
+              </b>
+          </p>
+          <p id="video-content-p">
+              描述：{{ video.vcontent }}
+          </p>
+          <p class="video-font" id="video-auther-img">
+              <img src="/static/images/author.png" alt=""> {{ video.user.name }}
+          </p>
+          <p class="video-font" id="video-date-img">
+              <img src="/static/images/date.png" alt=""> {{ video.up_date }}
+          </p>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+    {% block script %}
+    <script>
+      $("#mainpagenav li a").css('background','#C9BA9C');
+      $("#mainpage-video").css('background','bisque');
+
+      $("#btn-video-up").click(function () {
+          $("#formbk").css("visibility","visible");
+          $("#video-up-div").css("visibility","visible");
+      });
+      $("#btn-video-cencel").click(function () {
+          $("#formbk").css("visibility","hidden");
+          $("#video-up-div").css("visibility","hidden");
+      });
+
+    // 上传视频
+    $('#video-input').change(function () {
+        var files = this.files;
+        var file;
+        if (files && files.length) {
+
+            file = files[0];
+            console.log(file.type);
+
+            if (!(/^video\/\w+$/.test(file.type))) {
+
+                window.alert('请选择图片格式的文件');
+            }
+        }
+    })
+    </script>
+    {% endblock %}
+{% endblock %}

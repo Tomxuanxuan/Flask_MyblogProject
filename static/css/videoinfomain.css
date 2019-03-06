@@ -1,0 +1,65 @@
+.article{
+	background: #fff;
+}
+
+.Vd_titBox{
+	margin: 30px;
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20px;
+}
+
+
+.showInfo{
+	display: block;
+	border: 1px solid #fff;
+	border-top-color: #000;
+	border-top-width: 2px;
+	margin-bottom: 10px;
+}
+.showInfo .comment{
+	margin-top: 30px;
+}
+
+
+#pl_video_info div{
+	padding-top:20px;
+	padding-left: 20px;
+}
+.showInfo .tit h3{
+	border-bottom:none;
+	margin: 0;
+}
+.otherinfo{
+	margin: 10px;
+}
+.otherinfo a{
+	color: #0066cc;
+}
+
+/*评论框*/
+/*#content{*/
+	/*padding: 0;*/
+	/*margin: 0;*/
+	/*height: 180px;*/
+	/*text-align: center;*/
+	/*padding-top: 35px;*/
+	/*overflow: hidden;*/
+/*}*/
+.head-face img{
+    width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+.showInfo .head-face{
+	width: 10%;
+	float: left;
+}
+.showInfo .comment{
+	width: 87%;
+	float: left;
+}
+
+.showInfo .comment .content{
+	background-color: #fff;
+}

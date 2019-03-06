@@ -1,0 +1,244 @@
+﻿{% extends "base.html" %}
+
+{% block title %}
+  <title>个人中心</title>
+{% endblock %}
+{% block style %}
+  <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.4.6.0.css">
+  <link rel="stylesheet" href="/static/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/css/amazeui.cropper.css">
+  <link rel="stylesheet" href="/static/css/custom_up_img.css">
+  <link href="/static/css/base.css" rel="stylesheet">
+  <link href="/static/css/mypage.css" rel="stylesheet">
+
+  <style>
+    #starlist{margin-top:-20px;}
+    #header{top:-20px;}
+  </style>
+{% endblock %}
+{% block main %}
+  <main>
+    <div class="aboutbox">
+      <h2 class="place">您好 ：{{ user.name }}，您现在的位置是：网站首页> <a href="/">个人资料</a></h2>
+      <div class="abinfos">
+        <h3>个人资料</h3>
+        <hr>
+        <div class="infosbody">
+          <div class="bodyleft">
+            <div class="up-img-cover"  id="up-img-touch" >
+                <img class="am-circle" alt="点击图片上传" src="/static/upload/{{ user.photo }}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
+                <p><span>修改头像</span></p>
+            </div>
+              {#            <div><img src="/static/upload/{{ user.photo }}" alt=""></div>#}
+          </div>
+          <div class="bodyright">
+            <div class="bdrttop">
+              <p id="perindex"><a href="/mainpage/{{ session['user_id'] }}">个人主页&gt;</a></p>
+              <p>昵称 : {{ user.name }}</p>
+                <p><span>关注 <a style="cursor:pointer;" value="{{ user.user_id }}" id="atten_user">{{ params.atten_user }}</a></span><span>粉丝: <a style="cursor:pointer;" value="{{ user.user_id }}" id="fans_user">{{ params.atten_auther }}</a></span> </p>
+            </div>
+              <div id="atten_show"></div>
+              <script>
+                  $(function() {
+                      flag = 'False';
+
+                      $("#atten_user").click(function () {
+                          if(flag == 'False') {
+                              $.get('/attenusershow?atten=' + $("#atten_user").attr('value'), function (data) {
+                                  var data = eval(data);
+                                  $.each(data, function (i, obj) {
+                                      $("#atten_show").append(atten(obj))
+                                  })
+                              });
+                              flag = 'True'
+                          }
+                          else {
+                              flag = 'False';
+                              $("#atten_show").empty();
+
+                          }
+                      });
+
+                      function atten(obj) {
+                          html = '<li>';
+                          html += '<div class="head-face">';
+                          html += '<img src="/static/upload/'+obj.photo+'" />';
+                          html += '</div>';
+                          html += '<div class="reply-cont">';
+                          html += '<a class="username" href="/autherinfos/'+obj.user_id+'">' + obj.username + '</a>';
+                          html += '</div>';
+                          html += '</li>';
+                          return html
+                      }
+
+                      fansflag = 'False';
+                      $("#fans_user").click(function () {
+                          if(fansflag == 'False') {
+                              $.get('/attenusershow?fans=' + $("#fans_user").attr('value'), function (data) {
+                                  var data = eval(data);
+                                  $.each(data, function (i, obj) {
+                                      $("#atten_show").append(atten(obj))
+                                  })
+                              });
+                              fansflag = 'True'
+                          }
+                          else {
+                              fansflag = 'False';
+                              $("#atten_show").empty();
+
+                          }
+                      });
+
+                      function atten(obj) {
+                          html = '<li>';
+                          html += '<div class="head-face">';
+                          html += '<img src="/static/upload/'+obj.photo+'" />';
+                          html += '</div>';
+                          html += '<div class="reply-cont">';
+                          html += '<a class="username" href="/autherinfos/'+obj.user_id+'">' + obj.username + '</a>';
+                          html += '</div>';
+                          html += '</li>';
+                          return html
+                      }
+
+
+                  })
+
+              </script>
+
+
+            <div class="bdrtbot">
+              <p class="p1" id="modinfos"><span>修改资料&gt;</span></p>
+              <p class="p1">编号 ：{{ user.user_id }}</p>
+              <p class="p1">性别 ：{{ user.sex }}</p>
+              <p class="p1">博龄 ：{{ byears }} 年 {{ bdays }} 天</p>
+              <p class="p1">邮箱 ：{{ user.email }}</p>
+              <p class="p1">地址 ：{{ user.location }}</p>
+              <p class="p1" id="jianjie">简介 ：{{ user.about_me }}</p>
+            </div>
+              <div><a href="/imageupload">上传相册图片</a></div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div id="modmyinfos">
+        <h3 class="modh3">修改资料</h3>
+        <form method="POST" onsubmit="return check()">
+            <input type="hidden" name="fname" value="infos">
+            <p>
+                昵称 ：
+                <input type="text" name="uname" value="{{ user.name }}" onblur="isExist()">
+                <span id="show">
+                {% for msg in get_flashed_messages() %}
+                    {{ msg }}
+                {% endfor %}
+                </span>
+
+            </p>
+            <p>
+                性别 ：
+                <select name="sex" id="">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                    <option value="保密">保密</option>
+                </select>
+            </p>
+            <p>
+                邮箱 ： <input type="text" name="email" value="{{ user.email }}">
+            </p>
+            <p>
+                地址 ： <input type="text" name="address" value="{{ user.location }}">
+            </p>
+            <p>
+                <span>简介 ：</span>
+                <textarea name="intro" id="" cols="30" rows="10">{{ user.about_me }}</textarea>
+            </p>
+            <p class="btn">
+                <input type="button" class="cancel" value="取消" onclick="close();">
+                <button class="submit" value="">确定</button>
+            </p>
+
+        </form>
+
+    </div>
+
+<!--wrapper end-->
+  </main>
+
+<div><a style="text-align: center; display: block;"  id="pic"></a></div>
+
+<!--图片上传框-->
+<div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="doc-modal-1">
+  <div class="am-modal-dialog up-frame-parent up-frame-radius">
+	<div class="am-modal-hd up-frame-header">
+	   <label>修改头像</label>
+	  <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+	</div>
+
+
+
+	<div class="am-modal-bd  up-frame-body">
+	  <div class="am-g am-fl">
+		<div class="am-form-group am-form-file">
+		  <div class="am-fl">
+			<button type="button" class="am-btn am-btn-default am-btn-sm">
+			  <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+		  </div>
+                <input type="file" id="inputImage" name="photo">
+		</div>
+	  </div>
+	  <div class="am-g am-fl" >
+		<div class="up-pre-before up-frame-radius">
+			<img alt="" src="" id="image" >
+		</div>
+		<div class="up-pre-after up-frame-radius">
+		</div>
+	  </div>
+	  <div class="am-g am-fl">
+		<div class="up-control-btns">
+			<span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
+			<span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
+			<span class="am-icon-check" id="up-btn-ok" url="/myinfos"></span>
+		</div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<!--加载框-->
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+  <div class="am-modal-dialog">
+	<div class="am-modal-hd">正在上传...</div>
+	<div class="am-modal-bd">
+	  <span class="am-icon-spinner am-icon-spin"></span>
+	</div>
+  </div>
+</div>
+
+<!--警告框-->
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+	<div class="am-modal-hd">信息</div>
+	<div class="am-modal-bd"  id="alert_content">
+			  操作成功
+	</div>
+	<div class="am-modal-footer">
+	  <span class="am-modal-btn" onclick="location.reload();">确定</span>
+	</div>
+  </div>
+</div>
+<script>
+
+</script>
+{% endblock main %}
+
+{% block formbk %}
+    <script src="/static/js/jquery-1.8.3.min.js" charset="utf-8"></script>
+    <script src="/static/js/amazeui.min.js" charset="utf-8"></script>
+    <script src="/static/js/cropper.min.js" charset="utf-8"></script>
+    <script src="/static/js/mypage.js" charset="utf-8"></script>
+    <div id="formbk"></div>
+{% endblock formbk %}

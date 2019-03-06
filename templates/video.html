@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link href="/static/css/mypage.css" rel="stylesheet">
+<script src="/static/js/scrollReveal.js"></script>
+{% endblock %}
+
+{% block main %}
+<main>
+    <div class="video-list">
+    {% for video in videos %}
+        <div class="video-block" data-scroll-reveal="enter bottom over 1s">
+            <div class="video-div">
+               <video src="/static/upload/{{ video.savename }}" controls="controls"></video>
+            </div>
+            <div class="video-info">
+              <a href="/videoinfo/{{ video.vid }}">
+                  <h3 class="video-title">
+                      标题：{{ video.vtitle }}
+                  </h3>
+              </a>
+              <p class="video-descrip">
+                  描述：{{ video.vcontent }}
+              </p>
+              <p class="video-author">
+                  <img src="/static/images/author.png" alt="">
+                  <a href="">{{ video.user.name }}</a>&nbsp;&nbsp;
+                  <img src="/static/images/date.png" alt=""> {{ video.up_date }}
+              </p>
+            </div>
+            <span class="video-close">x</span>
+        </div>
+    {% endfor %}
+    </div>
+    <script>
+        if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+
+            (function(){
+
+                window.scrollReveal = new scrollReveal({reset: true});
+
+            })();
+
+        }
+        $(function () {
+        $(".video-close").mouseover(function () {
+            $(this).html("不感兴趣");
+            $(this).css("background","#a6926c");
+            $(this).css("color","#fff");
+            $(this).css("border-radius","5px");
+        });
+        $(".video-close").mouseout(function () {
+            $(this).html("x");
+            $(this).css("background","none");
+            $(this).css("color","#555");
+        });
+        $(".video-close").click(function () {
+            $(this).parent().remove();
+        })
+        });
+
+    </script>
+</main>
+{% endblock %}

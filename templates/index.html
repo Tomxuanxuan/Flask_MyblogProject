@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}主页{% endblock %}
+
+{% block main %}
+
+<div class="content">
+        <h3><p><span>推荐内容</span> Favorite Blog</p></h3>
+        <a href="/article/{{ params.hotcomm[0].article_id }}" target="_blank">
+            <img src="/static/upload/{{ params.article_topblog[0].article_img }}" alt="男女清晨4不要，晚上5不要！" title="男女清晨4不要，晚上5不要！" width="315" height="205" class="topimg">
+        </a>
+
+        <ul class="topblog">
+            {% for article_top in params.article_topblog %}
+            <li>
+                <a href="/article/{{ article_top.article_id }}" title="{{ article_top.title }}" target="_blank">{{ article_top.title }}<span>{{ article_top.brief | truncate(25,killwords=True,leeway=0) }}</span></a>
+            </li>
+           {% endfor %}
+        </ul>
+F
+        <!--首页推荐文章图片链接-->
+        <h3><p><span>美文分享</span> Share</p></h3>
+        <ul class="template">
+            {% for article in article_list %}
+            <li><a href="/article/{{ article.article_id }}" title="美文分享" target="_blank">
+                <img src="/static/upload/{{ article.article_img }}" alt="这世界上有两种东西，是别人抢不走的！">
+                </a>
+                <span></span>
+            </li>
+            {% endfor %}
+        </ul>
+        <!--<h2 class="newt">-->
+            <!--<span>&#9825;</span>最新文章：<a-->
+                <!--href="#">这世界上有两种东西，是别人抢不走</a>-->
+        <!--</h2>-->
+
+        <!--首页博客列表-->
+        <div class="bloglist">
+            {% for article in article_list %}
+            <h2>
+                <a title="{{ article.title }}" href="/article/{{ article.article_id }}" target="_blank">{{ article.title }}</a>
+            </h2>
+            <ul>
+                <p>
+                    {{ article.content | truncate(200,killwords=True,leeway=0) }}  <!--截断字符串-->
+                </p>
+                <p class="readmore">
+                    <a title="" href="/article/{{ article.article_id }}" target="_blank">阅读全文>></a>
+                </p>
+                <p class="dateview">
+                    <span>{{ article.publish_time }}</span>
+                    <span><a href="/autherinfos/{{ article.auther }}">作者：{{ article.publish_article.username }}</a></span>
+                    <span>分类：[<a href='/?art_type={{ article.label_id }}'>
+                        {% if article.label_id == 1 %}
+                            {{ '内涵段子' }}
+                        {% elif article.label_id == 2 %}
+                            {{ '劲爆游戏' }}
+                        {% elif article.label_id == 3 %}
+                            {{ '热门小说' }}
+                        {% elif article.label_id == 4 %}
+                            {{ '其他类型' }}
+                        {% endif %}
+                                </a>]
+                    </span>
+                    <span class="seenum">阅读量： {{ article.read_quantity }}&nbsp;</span>
+                </p>
+            </ul>
+            {% endfor %}
+
+        <div style="width:100%;text-align: center;">
+               <a href="/index?page=1">首页</a>
+               <a href="/index?page={{ prev_page }}">上一页</a>
+               <a href="/index?page={{ next_page }}">下一页</a>
+               <a href="/index?page={{ last_page }}">尾页</a>
+           </div>
+        </div>
+    </div>
+
+
+{% endblock %}

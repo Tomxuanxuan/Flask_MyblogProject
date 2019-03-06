@@ -1,0 +1,95 @@
+.infosbox p{
+    margin-bottom: 40px;
+}
+
+
+.content_title{
+    text-align: center;
+    font-family: '宋体';
+    font-size: 19px;
+    margin: 30px;
+}
+
+
+#title{
+    display: block;
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    border: none;
+    background-color: #efefef;
+    color: #4f4f4f;
+    margin: 1px auto;
+}
+
+#brief{
+    display: block;
+    cursor: text;
+    width:90%;
+    height: 80px;
+    border: 1px solid #d6cfbf;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 16px;
+
+}
+
+.release_span{
+    display: block;
+    font-size: 16px;
+    width: 90%;
+    margin: 0 auto;
+}
+#wen{
+    display: block;
+    cursor: text;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.release_bottom{
+    width: 90%;
+    margin:0 auto;
+}
+
+.droBlogType{
+    width: 130px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+span.required {
+    margin-left: 2px;
+    font-size: 12px;
+    color: #CA0C16;
+}
+
+.release_btn{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-outline-danger{
+    padding: .375rem 1.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    cursor: pointer;
+    border: 1px solid #C92027;
+    color: #C92027;
+    background-color: transparent;
+    margin-right: 80px;
+}
+.btn-outline-danger:hover{
+    color: #fff;
+    background-color: #C92027;
+}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+  发表博客
+{% endblock %}
+
+{% block style %}
+     <link href="/static/css/myinfos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/release.css">
+    <script src="/static/js/wangEditor.js"></script>
+  <style>
+		.classification input{ display:inline-block;margin-left: 15px;}
+		.container{width: 784px;}
+        .ariticleimg{width:14%;}
+        #choosephoto{width:400px;height: 170px;position: relative;}
+  </style>
+{% endblock %}
+
+
+
+
+{% block main %}
+
+
+    <main>
+		<h2 class="place">您好 ：{{ session['username'] }}，您现在的位置是：个人中心> <a href="/">发表博客</a></h2>
+		<div class="infosbox">
+            <div class="content_title"><h2>发布博客</h2></div>
+			<form action="/edit"  method="post" name="release" id="release" enctype="multipart/form-data">
+				<p>
+					<input class="comment_input" id="title" maxlength="50" name="title" required="required" size="25" tabindex="1"
+					 type="text" placeholder="输入文章标题">
+{#					<label for="title">文章标题</label>#}
+				</p>
+                <p>
+                <textarea name="brief" id="brief" cols="30" rows="10" placeholder="输入文章简介"></textarea>
+{#                <label for="title">文章简介</label>#}
+                </p>
+                <p>
+                    <span class="release_span">正文</span>
+{#				    <div id="editor" style="margin-left: 12px;margin-right: 12px"></div>#}
+                    <textarea name="wen" id="wen" cols="30" rows="10" required></textarea>
+                </p>
+                <p class="release_bottom">
+                    <span>上传封面: &nbsp;&nbsp;&nbsp;</span><input type="file" name="photo" id="upphoto" required>
+                </p>
+
+                <p class="release_bottom">
+					<input name="list" type="radio" value="1">内涵段子
+					&nbsp;<input name="list" type="radio" value="2">劲爆游戏
+					&nbsp;<input name="list" type="radio" value="3">热门小说
+                    &nbsp;<input name="list" type="radio" value="4" checked>其他类型
+				</p>
+				<p class = release_btn>
+					<input id="id_article" name="art_article" type="hidden" value="1">
+					<input name="submit" type="submit" class="btn-outline-danger" value="发表" onclick="ajaxForm()"/>
+                    <input type="submit" class="btn-outline-danger" title="返回" value="返回">
+                </p>
+			</form>
+
+		</div>
+
+
+    </main>
+
+{#<script>#}
+{#    var E = window.wangEditor;#}
+{#    var editor = new E('#editor');#}
+{#		// 或者 var editor = new E( document.getElementById('editor') )#}
+{#    editor.create();#}
+{##}
+{##}
+{#</script>#}
+{##}
+{#<script>#}
+{##}
+{#    function ajaxForm() {#}
+{##}
+{#        var html = $("<input type='textarea' name='content'>");#}
+{#        $("#editor").after(html);#}
+{#        html.html(editor.txt.html());#}
+{#        content = editor.txt.html();#}
+{##}
+{#        var data = {};#}
+{#        data['content'] = content;#}
+{#        console.log(data);#}
+{##}
+{##}
+        {#$.ajax({#}
+        {#    type:'POST',#}
+        {#    url:'/edit',#}
+        {#    dataType:'json',#}
+        {#    data:JSON.stringify(data),#}
+        {#    contentType:'application/json; charset=UTF-8',#}
+        {#    success:function (data) {#}
+        {#        addselect(data);#}
+        {##}
+        {#    }});#}
+{##}
+{#    }#}
+{#	</script>#}
+
+
+
+	{% endblock main %}

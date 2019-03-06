@@ -1,0 +1,397 @@
+@charset "UTF-8";
+h3 {
+    border-bottom: #FFF 1px solid;
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    margin: 0 0 10px;
+    font-family: "微软雅黑";
+    display: block;
+    clear: both
+}
+
+h3 p {
+    background: #474645;
+    width: 180px;
+    height: 25px;
+    margin: 15px 0 0 10px;
+    line-height: 25px;
+    color: #fff;
+    text-align: center;
+    box-shadow: #999 4px 5px 1px;
+}
+
+h3 p span {
+    color: #fd5daa
+}
+
+h3:nth-child(2n) p span {
+    color: #38b3d4
+}
+
+.topimg {
+    margin-left: 10px;
+    clear: left;
+    float: left
+}
+
+.topblog {
+    background: url("/static/images/libg.png") no-repeat 15px 15px;
+    border: #dddddd 1px solid;
+    border-left: 0;
+    border-bottom: 0;
+    line-height: 26px;
+    /*float: right;*/
+    /*width: 55%;*/
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.topblog li {
+    text-align: center;
+    border-bottom: #dddddd 1px solid;
+    border-top: #FFF 1px solid;
+    font-family: "΢���ź�"
+}
+
+.topblog li span {
+    display: block;
+    font-size: 12px;
+    color: #999999;
+    font-weight: normal
+}
+
+.topblog li a {
+    color: #ef7000;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    height: 52px;
+    padding: 7px 0;
+}
+
+.topblog li a:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000
+}
+
+.template {
+    padding: 0 0 0 20px;
+    overflow: hidden;
+    margin: 0 5px
+}
+
+.template li {
+    margin: 7px;
+    float: left;
+}
+
+.template li img {
+    width: 142px;
+    height: 80px;
+    background: #FFF;
+    padding: 4px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    display: block;
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition: All 1s ease;
+    -o-transition: All 1s ease;
+}
+
+.template li img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+}
+
+.tags {
+    overflow: hidden;
+}
+
+.tags section {
+    width: 330px;
+    float: left;
+    font-family: "΢���ź�";
+    margin: 15px 20px;
+    display: inline
+}
+
+.tags h2 {
+    color: #333;
+    font-size: 18px;
+    border-bottom: #b4b1af 2px solid;
+    background: url("/static/images/libg.png") -60px -243px no-repeat;
+    line-height: 40px;
+    height: 40px;
+}
+
+.tags h2 a {
+    float: right;
+    background: url("/static/images/libg.png") 0 -258px no-repeat;
+    width: 20px;
+    height: 30px
+}
+
+.tags h2 span {
+    color: #b41828;
+}
+
+.tags ul {
+    margin: 10px;
+    border-bottom: #bebdbb 1px dashed;
+    overflow: hidden;
+    padding: 10px 0 20px 0
+}
+
+.tags ul li {
+    color: #FFF;
+    display: inline;
+    line-height: 30px;
+    height: 30px
+}
+
+.tags ul li a {
+    color: #575654;
+    padding: 3px 6px;
+}
+
+.tags ul li a:hover {
+    color: #F00;
+    text-decoration: underline
+}
+
+.tags section:nth-child(1) ul li:nth-child(1) a {
+    background: #f11139;
+    color: #FFF
+}
+
+.tags section:nth-child(2) ul li:nth-child(1) a {
+    background: #00b6e5;
+    color: #FFF
+}
+
+.bloglist {
+    width: 99%;
+    background: #f1f1f1;
+    margin: 20px 5px;
+    border-top: #383838 4px solid;
+    clear: both;
+    overflow: hidden;
+    padding: 20px 0 0 0
+}
+
+.bloglist h2 {
+    background: url("/static/images/libg.png") 10px -294px no-repeat;
+    line-height: 29px;
+    height: 29px;
+    font-size: 14px;
+    color: #3b3b3b;
+    padding: 10px 0 10px 50px;
+}
+
+.bloglist h2 a {
+    color: #3b3b3b;
+    display: block;
+    width: 80%;
+}
+
+.bloglist h2 a:hover {
+    width: 90%;
+    background: #ccc;
+    cursor: pointer;
+    text-shadow: #fff 1px 1px 1px;
+    padding-left: 40px
+}
+
+.bloglist ul {
+    line-height: 24px;
+    padding: 0 10px;
+    margin-bottom: 20px
+}
+
+.bloglist ul p {
+    text-indent: 2em
+}
+
+.readmore {
+    margin: 10px
+}
+
+.readmore a {
+    color: #e84545;
+}
+
+.readmore a:hover {
+    color: #333
+}
+
+.dateview {
+    background: #f6f6f6 url("static/images/libg.png") 10px -340px no-repeat;
+    line-height: 24px;
+    height: 24px;
+    color: #838383;
+    margin: 0 10px
+}
+/*.dateview .seenum{*/
+    /*float: right;*/
+/*}*/
+/*.dateview a {*/
+    /*color: #838383;*/
+/*}*/
+
+.dateview a:hover {
+    color: #333;
+}
+
+.dateview span {
+    margin: 0 10px
+}
+
+aside nav {
+    height: 150px;
+    overflow: hidden;
+}
+
+aside nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+aside nav ul li {
+    float: left;
+    width: 90px;
+    line-height: 74px;
+    height: 74px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+
+aside nav ul li a {
+    display: block;
+    color: #FFF;
+    transition: All 1s ease;
+    -webkit-transition: All 1s ease;
+    -moz-transition: All 1s ease;
+    -o-transition: All 1s ease;
+}
+
+aside nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg)
+}
+
+aside nav ul li:nth-child(1) {
+    background: #71a532;
+}
+
+aside nav ul li:nth-child(2) {
+    background: #ff9900
+}
+
+aside nav ul li:nth-child(3) {
+    background: #8c49ad
+}
+
+aside nav ul li:nth-child(4) {
+    background: #e7769e
+}
+
+aside nav ul li:nth-child(5) {
+    background: #a98659
+}
+
+aside nav ul li:nth-child(6) {
+    background: #63a8e8
+}
+
+/*.vcard img {*/
+    /*float: left;*/
+    /*clear: right;*/
+    /*margin-right: 5px*/
+/*}*/
+
+/*.vcard p {*/
+    /*line-height: 25px*/
+/*}*/
+
+.newbolg {
+    margin: 10px 0 0 0;
+}
+
+.newbolg h2 {
+    color: #FFF;
+    background: #a6926c;
+    line-height: 36px;
+    font-weight: normal;
+    padding: 0 0 0 15px;
+    height: 36px;
+    font-size: 14px;
+}
+
+.newbolg h2 a {
+    color: #FFF
+}
+
+.newbolg ul {
+    padding-left: 20px;
+    background: url("/static/images/hot_title_bg.gif") 0 8px no-repeat
+}
+
+.newbolg ul li {
+    line-height: 31px;
+    clear: both;
+    padding-left: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.newbolg ul li a {
+    color: #333;
+}
+
+.newbolg ul li a:hover {
+    color: #F00;
+    text-decoration: underline
+}
+
+.hotcomm {
+    clear: both;
+}
+
+.hotcomm h2 {
+    border-bottom: #333 2px solid;
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    color: #383734
+}
+
+.hotcomm ul {
+    list-style-type: none;
+    background: url("/static/images/libg.png") 0 -395px no-repeat;
+    margin-top: 10px
+}
+
+.hotcomm ul li a {
+    display: block;
+    color: #525252;
+    padding-left: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 36px;
+    height: 36px;
+    overflow: hidden
+}
+
+.hotcomm ul li a:hover {
+    text-decoration: underline;
+    color: #F00
+}

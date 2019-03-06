@@ -1,0 +1,58 @@
+{% extends 'mainpage.html' %}
+
+{% block mainpagecontent %}
+  <p style="overflow: hidden;">
+    <p id="resource-search">
+        搜索： <input type="text" >
+    </p>
+
+    <form action="/mainpage-myresource/{{ user_id }}" method="post" enctype="multipart/form-data">
+      <p id="resource-up">
+        <input type="file" name="file" style="width:250px;border:1px solid #fff;border-radius: 1px;background:#fff;">
+        <input type="submit" value="上传" style="width:50px;border-radius: 4px;background:#C9BA9C;">
+      </p>
+    </form>
+
+  </p>
+  <table>
+    <tr>
+      <th>名称</th>
+      <th>日期</th>
+      <th>大小</th>
+      <th>操作</th>
+    </tr>
+    <tbody  id="resource-item" style="color:gray;">
+    {% for resource in resources %}
+    <tr>
+      <td style="color:#000;">{{ resource.fname }}</td>
+      <td>{{ resource.up_date }}</td>
+      <td>{{ resource.rsize }} KB</td>
+      <td><a href="../static/upload/{{ resource.rname }}" download="{{ resource.fname }}">下载</a> | <a href="/del-resource?rid={{ resource.rid }}">删除</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+  </table>
+  <div id="mpcitem">
+
+  </div>
+  {% block script %}
+    <script>
+      $("#mainpagenav li a").css('background','#C9BA9C');
+      $("#mainpage-myresource").css('background','bisque');
+      $("#resource-search input").keyup(function () {
+          $.get('/mainpage-myresource/{{ user_id }}', 'fname='+this.value,function (resText) {
+              if(resText.length>0){
+                  $("#resource-item").html('');
+                  $.each(resText,function (i,obj) {
+                    var $tr = $("<tr><td style='color:#000;'>"+obj.fname+"</td><td>"+obj.up_date+"</td><td>"+obj.rsize+" KB</td><td><a href='../static/upload/"+obj.rname+"' download='"+obj.fname+"'>下载</a> | <a href='/del-resource?rid="+obj.rid+"'>删除</a></td></tr>");
+                    $("#resource-item").append($tr)
+                  })
+              }
+
+          },'json')
+      })
+      //})
+    </script>
+  {% endblock %}
+{% endblock %}

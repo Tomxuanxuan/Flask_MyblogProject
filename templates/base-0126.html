@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}-个人博客平台</title>
+
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="个人博客，提供最新娱乐信息" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/index.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/sinaFaceAndEffec.css">
+{#<link href="/static/css/m.css" rel="stylesheet">#}
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}" ></script>
+<script src="{{ url_for('static',filename='js/hc-sticky.js') }}"></script>
+<script src="{{ url_for('static',filename='js/comm.js') }}"></script>
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+
+<link rel="shortcut icon" href="../static/images/001.ico" type="image/x-icon">
+
+<!--[if lt IE 9]>
+<script src="{{ url_for('static',filename ='js/modernizr.js') }}"></script>
+<![endif]-->
+
+{% block style %}
+{% endblock %}
+
+<header id="header">
+    <div class="navbar">
+      <div class="topbox">
+        <p class="welcome">欢迎来到Joker世界，最懂你的娱乐博客</p>
+        <p class="welcome1"></p>
+      </div>
+    </div>
+    <div class="header-navigation">
+      <nav>
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <ul id="starlist">
+          <li><a href="index.html">博客首页</a></li>
+          <li><a href="duanzi.html">内涵段子</a></li>
+            <!-- <ul class="sub">
+              <li><a href="#">搞笑幽默</a></li>
+              <li><a href="#">青春励志</a></li>
+              <li><a href="#">冷笑话</a></li>
+            </ul> -->
+          <li><a href="game.html">劲爆游戏</a></li>
+            <!-- <ul class="sub">
+              <li><a href="#">最新发布</a></li>
+              <li><a href="#">比赛实况</a></li>
+              <li><a href="#">热门手游</a></li>
+            </ul> -->
+          <li><a href="manhua.html">酷爽漫画</a></li>
+            <!-- <ul class="sub">
+              <li><a href="#">校园都市</a></li>
+              <li><a href="#">青春热血</a></li>
+              <li><a href="#">恐怖魔幻</a></li>
+            </ul> -->
+          <li class="menu"><a href="book.html">精品小说</a>
+            <!-- <ul class="sub">
+              <ul class="sub">
+                <li><a href="#">校园都市</a></li>
+                <li><a href="#">武侠仙侠</a></li>
+                <li><a href="#">恐怖魔幻</a></li>
+              </ul>
+            </ul> -->
+          </li>
+          <li><a href="fabu.html">文章发布</a></li>
+          <li><a href="login.html">用户登录</a></li>
+          <li><a href="zhuce.html">用户注册</a></li>
+          <li><a href="zhifu.html">我的会员</a></li>
+        </ul>
+      </nav>
+      <div class="searchbox">
+        <div id="search_bar" class="search_bar">
+            <form  id="searchform" action="[!--news.url--]e/search/index.php" method="post" name="searchform">
+              <input class="input" placeholder="想搜点什么呢.." type="text" name="keyboard" id="keyboard">
+              <input type="hidden" name="show" value="title" />
+              <input type="hidden" name="tempid" value="1" />
+              <input type="hidden" name="tbname" value="news">
+              <input type="hidden" name="Submit" value="搜索" />
+              <p class="search_ico"> <span></span></p>
+            </form>
+        </div>
+      </div>
+    </div>
+  </header>
+<div class="wrapper">
+
+  {% block main %}
+  {% endblock %}
+  
+  {% block allmain %}
+  <aside class="sidebar">
+    <div class="about">
+      <h2 class="hometitle">关于本站</h2>
+      <ul>
+        <div class="avatar"> <img src="/static/upload/{{ session['photo'] }}" alt=""> </div>
+        <p class="abname">欢迎：{{ session['username'] }}</p>
+        <p class="abtext"> 欢迎来到娱乐博客，分享资讯信息，获取最新新闻，还有丰富多彩的娱乐活动，收藏我们，不迷路 </p>
+        <li><a class="xlwb" href="#" target="_blank"></a></li>
+        <li><a class="txqq" href="" target="_blank"></a></li>
+        <li><a class="rss" href="" target="_blank"></a></li>
+        <li class="wxpic"><a class="wx" href=""></a></li>
+      </ul>
+    </div>
+    <div class="tjlm">
+      <h2 class="hometitle">推荐栏目</h2>
+      <ul>
+        <li><a href="about.html">我的收藏</a></li>
+        <li><a href="share.html">我的发表</a></li>
+        <li><a href="list.html">博客日记</a></li>
+        <li><a href="info.html">慢生活</a></li>
+        <li><a href="time.html">时间轴</a></li>
+        <li><a href="#">美文欣赏</a></li>
+      </ul>
+    </div>
+    <div class="tpjx">
+      <h2 class="hometitle">图片精选</h2>
+      <ul>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/1.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/2.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/3.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/4.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/5.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+        <li><a href="#"><i><img src="{{ url_for('static',filename='images/6.jpg') }}"></i><span>个人博客，属于我的小世界！</span></a></li>
+      </ul>
+    </div>
+  </aside>
+  <!--sidebar end--> 
+</div>
+<!--wrapper end-->
+<footer>
+  <div class="footer">
+    <div class="bzjj">
+      <h2>本站简介</h2>
+      <p>Joker word娱乐博客，是一个以丰富业余生活为主，简单、实用为目的，为大众提供一个娱乐交友平台</p>
+    </div>
+    <div class="other">
+      <h2>网站版权</h2>
+      <p>未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：476847113@qq.com</p>
+      <p>&nbsp;</p>
+      <p>备案号：蜀ICP备11002373号-1</p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+{% block formbk %}
+{% endblock %}
+
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>

@@ -1,0 +1,125 @@
+﻿
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Image &mdash;  a smart website </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Google Webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="/static/css/imagecss/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="/static/css/imagecss/icomoon.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="/static/css/imagecss/magnific-popup.css">
+	<!-- Salvattore -->
+	<link rel="stylesheet" href="/static/css/imagecss/salvattore.css">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="/static/css/imagecss/style.css">
+	<!-- Modernizr JS -->
+	<script src="/static/js/imagejs/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="/static/js/imagejs/respond.min.js"></script>
+	<![endif]-->
+	<embed src="./bgm/bgm-jl.mp3" autostart="true" loop="-1" width="0" height="0"></embed>
+	</head>
+	<body>
+		
+	<div id="fh5co-offcanvass">
+		<h3 class="fh5co-lead"><a href="/">返回主页</a> </h3>
+
+	</div>
+	<header id="fh5co-header" role="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="#" class="fh5co-menu-btn js-fh5co-menu-btn">菜单 <i class=""></i></a>
+					<a class="navbar-brand" href="/">{{ params.user.name }}图集</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- END .header -->
+    
+    <div class="copyrights">Collect from <a href="/" >个人博客</a></div>
+	
+	
+	<div id="fh5co-main">
+		<div class="container">
+
+			<div class="row">
+
+        <div id="fh5co-board" data-columns>
+{% for images_list in params.images_lists %}
+        	<div class="item">
+        		<div class="animate-box">
+	        		<a href="/static/imgupload/{{ images_list.imagename }}" class="image-popup fh5co-board-img" title="{{ images_list.imagebrief }}"><img src="/static/imgupload/{{ images_list.imagename }}" alt="Free HTML5 Bootstrap template"></a>
+        		</div>
+        		<div class="fh5co-desc">{{ images_list.imagebrief }}</div>
+        	</div>
+{% endfor %}
+
+        	</div>
+        </div>
+        </div>
+       </div>
+
+	<footer id="fh5co-footer">
+		
+		<div class="container">
+			<div class="row row-padded">
+				<div class="col-md-12 text-center">
+
+                    <p><small>&copy; 图集</small></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- jQuery -->
+	<script src="/static/js/imagejs/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="/static/js/imagejs/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="/static/js/imagejs/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="/static/js/imagejs/jquery.waypoints.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="/static/js/imagejs/jquery.magnific-popup.min.js"></script>
+	<!-- Salvattore -->
+	<script src="/static/js/imagejs/salvattore.min.js"></script>
+	<!-- Main JS -->
+	<script src="/static/js/imagejs/main.js"></script>
+
+	
+
+	
+	</body>
+</html>

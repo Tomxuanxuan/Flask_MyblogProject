@@ -1,0 +1,300 @@
+.abinfos h3{
+	height: 40px;
+}
+.infosbody{
+	overflow: hidden;
+}
+.bodyleft,.bodyright{
+	float: left;
+}
+.bodyleft{
+	width: 14%;
+	height: 100px;
+	margin: 20px 20px 0 0;
+}
+.bodyleft p{
+	color: #56ACEE;
+	font-size: 14px;
+	text-align: center;
+}
+.infosbody a{
+	color: #56ACEE;
+	font-size: 14px;
+}
+.infosbody a:hover{
+	color: #0B50AD;
+}
+.bodyleft img{
+	width: 80px;
+	height: 80px;
+	margin: 10px;;
+	border-radius: 50%; 
+}
+.bodyright{
+	width: 83%;
+	margin-top: 20px; 
+}
+.bdrttop{
+	width: 100%;
+	height: 70px;
+	margin-bottom: 20px; 
+	border-bottom: 1px solid #ddd; 
+}
+
+.bdrttop span{
+	padding-right: 30px; 
+}
+
+#perindex{
+	float: right;
+}
+#modinfos{
+	float: right;
+	color:#56ACEE;	
+}
+#modinfos span{
+	color:#56ACEE;
+}
+#jianjie{
+	height: 100px;
+}
+.user{
+	margin:0 auto;
+	font-size: 14px;
+	border: 1px solid #ddd;
+	background: white;
+	overflow: hidden;
+}
+.utop{
+	height: 80px;
+}
+.utop>div{
+	float: left;
+	width: 33.3%;
+	height: 80px;
+	text-align: center;
+	line-height: 80px;
+	position: relative;
+}
+#guanzhu{
+	display: inline-block;
+	width: 70%;
+	height: 25px;
+	background: #fff;
+	color: orange;
+	font-size: 14px; 
+	line-height: 25px;
+	border-radius: 6px;
+	border: 1px solid orange;
+	/*position: relative;
+	top: 25px;
+	left: 15px;*/
+}
+#guanzhu:hover{
+	background: orange;
+	color: white;
+}
+#touxiang img{
+	width: 60px;
+	height: 60px;
+	margin: 10px 10px 10px 20px;
+	border-radius: 50%; 
+}
+#nicheng{
+	text-align: left;
+}
+.umid{
+	height: 80px;
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+}
+.umid>div{
+	float: left;
+	width: 25%;
+	padding: 20px 0;
+	text-align: center;
+}
+.umid p{
+	margin: 0;
+	padding: 0;
+}
+.ubot{
+	height: 90px;
+}
+.ubot>div{
+	float: left;
+	width: 33%;
+	height: 45px;
+	margin: 0 10px 0 30px; 
+	/*text-align: center;*/
+}
+.ubot .buup{
+	line-height: 60px;
+}
+/*#modmyinfos{*/
+	/*width: 100px;*/
+	/*height: 200px;*/
+	/*background: #fff;*/
+	/*border: 1px solid black;*/
+	/*position: fixed;*/
+	/*top:20%;*/
+	/*left: 30%;*/
+/*}*/
+
+#formbk{
+  width: 2000px;
+  height: 2000px;
+  background: #000;
+  z-index: 1001;
+  visibility: hidden;
+  opacity: .4;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+#modphoto{
+  width: 450px;
+  height: 320px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid black;
+  position: fixed;
+  top:250px;
+  left:50%;
+  margin-left:-230px;
+  visibility: hidden;
+  z-index: 1002;
+}
+.bodyleft img:hover{
+  cursor: pointer;
+}
+#modphoto p{
+  margin-left: 25px;
+}
+#modphoto .cancel {
+    float: right;
+    margin-top: 20px;
+    width: 60px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+#modphoto .submit{
+  float: right;
+  margin: 20px;
+  width: 60px;
+  height: 35px;
+  background:#CA0D16;
+  color:#fff;
+  line-height: 35px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+#choosephoto{
+  width: 400px;
+  height: 170px;
+  margin: 0 auto;
+  position: relative;
+}
+#choosephoto #upphotoimg{
+  width: 400px;
+  height: 170px;
+  position: absolute;
+  top:0;
+  z-index: -1;
+  cursor: pointer;
+}
+#upphoto:hover{
+  cursor: pointer;
+}
+#upphoto{
+  width: 400px;
+  height: 170px;
+  opacity: 0.5;
+}
+#modmyinfos{
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid black;
+  position: fixed;
+  top:200px;
+  left:50%;
+  margin-left:-200px;
+  visibility: hidden;
+  z-index: 1002;
+}
+.modh3{
+  margin: 15px;
+}
+.p1{
+  padding-bottom: 10px;
+}
+#modmyinfos p{
+  height: 30px;
+  line-height: 30px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+#modmyinfos input{
+  height: 30px;
+  padding-left:5px;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  outline: 0;
+}
+#modmyinfos select{
+  width: 60px;
+  height: 30px;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  outline: 0;
+}
+#modinfos span,.bodyleft span{
+  color: #56ACEE;
+  font-size: 14px;
+}
+#modinfos span:hover{
+  color: #0B50AD;
+  cursor: pointer;
+}
+.bodyleft span:hover{
+  color: #0B50AD;
+  cursor: pointer;
+}
+#modmyinfos textarea{
+  width: 270px;
+  height: 100px;
+  padding: 5px;
+  border-radius:4px;
+  border:1px solid #c8cccf;
+  color:#6a6f77;
+  vertical-align:top;
+}
+#modmyinfos .btn{
+  position:absolute;
+  right:20px;
+  bottom: 20px;
+}
+#modmyinfos .cancel{
+  width: 60px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+#modmyinfos .submit{
+  width: 60px;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  background:#CA0D16;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>咸鱼</title>
+<link rel="stylesheet" type="text/css" href="../static/css/search-form.css">
+    <script src="/static/js/common.js"></script>
+  <script src="/static/js/jquery-1.11.3.js"></script>
+  <script src="/static/js/01-search.js"></script>
+</head>
+<body>
+    <form action="/02-search" method="post" enctype="multipart/form-data">
+		<div class="search-wrapper_after_top">
+			<div class="input-holder">
+				<input type="text" class="search-input" placeholder="请输入搜索内容" id="keyword" name="keyword"/>
+                <div id="neural">
+                    <input type="file" id="img_kw">
+                </div>
+                <div id="show"></div>
+				<button class="search-icon" ><img src="../static/img/ico.jpg" width="40px" height="40px"></button>
+                <button class="xy-icon">全网搜索</button>
+			</div>
+		</div>
+	</form>
+    {% for content in params.l %}
+        <div class="search_content"><a>标题: {{ content }}</a></div>
+
+    {% endfor %}
+    <div id="page-view">
+        <table width="400">
+        <tr>
+      <td >
+        <a href="/03-search?page=1">首页</a>
+      </td>
+      <td>
+        <a href="/03-search?page={{ params.prevPage }}">上一页</a>
+      </td>
+      <td>
+        <a href="/03-search?page={{ params.nextPage }}">下一页</a>
+      </td>
+      <td>
+        <a href="/03-search?page={{ params.lastPage }}">尾页</a>
+      </td>
+        </tr>
+        </table>
+    </div>
+</body>
+</html>

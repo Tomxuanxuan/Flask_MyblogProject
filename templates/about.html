@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}个人中心{% endblock %}
+
+{% block main %}
+
+
+
+  <main>
+    <div class="aboutbox">
+    {% if flag == 'MyCollect' %}
+        <h2 class="place">您现在的位置是：网站首页> <a href="/">个人中心> </a> <a href="/">我的收藏</a></h2>
+        <div class="bloglist">
+        <ul>
+            <!--MyCollageArticle-->
+            {% for article in articles %}
+            <li> <i class="blogpic"><a href="#"><img src="/static/upload/{{ article.article_img }}" alt=""> </a></i>
+              <dl>
+                <dt><a href="/article/{{ article.article_id }}" target="_blank">{{ article.title }}</a></dt>
+                <dd><span class="bloginfo">{{ article.brief }}</span>
+                  <p class="timeinfo"><span class="lanmu"><a href="#" target="_blank">{{ article.publish_article.username }}</a></span><span class="date">{{ article.publish_time }}</span></p>
+                  <a class="read" href="/article/{{ article.article_id }}">阅读更多</a> </dd>
+              </dl>
+            </li>
+            {% endfor %}
+         </ul>
+        </div>
+
+      {% else %}
+        <h2 class="place">您现在的位置是：网站首页> <a href="/">个人中心> </a><a href="/">我的发表</a></h2>
+            <div class="bloglist">
+                <ul>
+                <!--MyPublishArticle-->
+                {% for article in articles %}
+                    <li> <i class="blogpic"><a href="#"><img src="/static/upload/{{ article.article_img }}" alt=""> </a></i>
+                  <dl>
+                    <dt><a href="/article/{{ article.article_id }}" target="_blank">{{ article.title }}</a></dt>
+                    <dd><span class="bloginfo">{{ article.brief }}</span>
+                      <p class="timeinfo"><span class="lanmu"><a href="#" target="_blank">{{ article.publish_article.username }}</a></span><span class="date">{{ article.publish_time }}</span></p>
+                      <a class="read" href="/article/{{ article.article_id }}">阅读更多</a> </dd>
+                  </dl>
+                </li>
+                {% endfor %}
+
+                </ul>
+            </div>
+    {% endif %}
+
+
+
+
+    <!--bloglist end-->
+
+    </div>
+  </main>
+
+{% endblock %}
