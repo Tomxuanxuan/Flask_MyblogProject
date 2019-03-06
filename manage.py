@@ -17,7 +17,7 @@ HOSTNAME = '127.0.0.1'
 PORT = '3306'
 DATABASE = 'Flask_Myblog'
 USERNAME = 'root'
-PASSWORD = 'ake123456'  ###
+PASSWORD = 'XXXXXX'  ###
 DB_URI = 'mysql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME, PASSWORD, HOSTNAME, PORT, DATABASE)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
